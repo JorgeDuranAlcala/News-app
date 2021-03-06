@@ -15,7 +15,7 @@ A basic react native app which fetch data from an api
 ## getting started
 Start Expo
 
-```shell
+```sh
     expo start
     expo start --android
     expo start --ios
@@ -23,20 +23,20 @@ Start Expo
 ```
 Android
 
-```shell
+```sh
     expo start --android
     expo start --ios
     expo start --web
 ```
 IOS
 
-```shell
+```sh
     expo start --ios
 ```
 
 Web
 
-```shell
+```sh
     expo start --web
 ```
 
