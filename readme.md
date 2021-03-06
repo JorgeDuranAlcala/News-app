@@ -2,20 +2,20 @@
 A basic react native app which fetch data from an api
 
 ## frameworks and tools used
--[React Native](https://reactnative.dev/)
--[Expo](https://expo.io/)
+- [React Native](https://reactnative.dev/)
+- [Expo](https://expo.io/)
 
 ## Libraries
--[styled-components](https://styled-components.com/)
--[react-navigation](https://reactnavigation.org/)
+- [styled-components](https://styled-components.com/)
+- [react-navigation](https://reactnavigation.org/)
 
 ## APIS
-[NewsApi.org](https://newsapi.org/docs/get-started#search)
+- [NewsApi.org](https://newsapi.org/docs/get-started#search)
 
 ## getting started
 Start Expo
 
-```console
+```shell
     expo start
     expo start --android
     expo start --ios
@@ -23,20 +23,20 @@ Start Expo
 ```
 Android
 
-```console
+```shell
     expo start --android
     expo start --ios
     expo start --web
 ```
 IOS
 
-```console
+```shell
     expo start --ios
 ```
 
 Web
 
-```console
+```shell
     expo start --web
 ```
 
