@@ -1,8 +1,8 @@
 import React from 'react'
-import { View, Text } from 'react-native'
 import styled from 'styled-components/native'
 import CustomButton from '../components/CustomButton'
 import Input from '../components/Input'
+import Text from '../components/Text'
 import { getContextState } from '../context'
 
 export default function Home({ navigation }) {
@@ -17,15 +17,18 @@ export default function Home({ navigation }) {
 
     return (
         <HomeContainer>
-            <WelcomeText>
-                Write a subject to search for!!
+            <WelcomeText bold>
+                Home
             </WelcomeText>
+            <MainText bold>
+                Write a topic below and read articles related to it
+            </MainText>
             <Input
                 onChangeText={text => { setQuery(text) }}  
                 placeholder="Go ahead Type anything" 
                 onKeyPress={OnPressEnter} 
             />
-            <GoDetailsBtn primary title="Search for articles" onPress={() => navigation.navigate('articles', { Query })}/>
+            <SearchBtn primary title="Search for articles" onPress={() => navigation.navigate('articles', { Query })}/>
         </HomeContainer>
     )
 }
@@ -33,21 +36,23 @@ export default function Home({ navigation }) {
 const HomeContainer = styled.View`
     background: ${({ theme }) => theme.bg.main }
     flex: 1;
+    padding: 25px;
     justify-content: center;
-    flex-wrap: wrap;
-    align-content: space-around;
 `
 
-const WelcomeText = styled.Text`
-    color: ${ ({ theme }) => theme.text.primary}
-    font-size: 15px;
-    font-weight: bold;
+const WelcomeText = styled(Text)`
+    font-size: 20px;
     text-align: center;
+    padding: 15px;
+    border-bottom-width: 2px;
+    border-bottom-color: gray;
 `
 
-const GoDetailsBtn = styled(CustomButton)`
-    margin-top: 10;
+const SearchBtn = styled(CustomButton)`
+    margin-top: 10px;
 `
-const GoArticlesBtn = styled(CustomButton)`
-   margin-top: 10;
+const MainText = styled(Text)`
+   margin-vertical: 10px;
+   font-size: 16px;
+   text-align: center;
 `

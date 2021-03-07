@@ -18,16 +18,14 @@ export default function Input(props) {
 
 
 const Container = styled.View`
-    max-width: 250;
-    margin-top: 20;
-    margin-bottom: 20;
+    margin-top: 20px;
+    margin-bottom: 20px;
 `
 const InputContainer = styled.TextInput`
     flex: 1;
     margin-top: 15px;
     padding: 10px;
-    border-width: 2;
-    border-radius: 10;
+    border-width: 2px;
     color: ${ ({ theme }) => theme.text.primary};
     border-color: ${ ({ focused }) => focused ? 'blue' : 'gray'};
 `

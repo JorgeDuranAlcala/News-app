@@ -5,7 +5,7 @@ const MainContext = createContext(null)
 
 const theme = {
     pallete: {
-        primary: "#4B0082",
+        primary: "rgb(7, 125, 230)",
         secondary: "#E6E6FA"
     },
     text: {
@@ -39,8 +39,7 @@ export const ContextProvider = ({ children }) => {
 
       return  (
           <ThemeProvider theme={CurrenTheme !== 'dark' ? lightTheme : darkTheme} >
-            <MainContext.Provider 
-                value={value} >
+            <MainContext.Provider value={value} >
                 { children }
             </MainContext.Provider>
           </ThemeProvider>

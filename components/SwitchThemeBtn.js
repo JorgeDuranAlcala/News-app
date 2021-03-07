@@ -19,17 +19,17 @@ export default function SwitchThemeBtn() {
 const ContainerTouchable = styled.TouchableOpacity`
     background-color: ${({ theme }) => theme.pallete.primary };
     position: absolute; 
-    bottom: 10; 
-    left: 10;
+    bottom: 10px; 
+    left: 10px;
     border-radius: 50%;
     shadow-color: #000;
     shadow-offset: {width: 0, height: 4};
     shadow-opacity: 0.8;
-    shadow-radius: 5;
+    shadow-radius: 5px;
 `
 
 const IconInside = styled.Text`
     font-size: 15px;
-    padding-vertical: 15;
-    padding-horizontal: 15;
+    padding-vertical: 15px;
+    padding-horizontal: 15px;
 `

@@ -1,25 +1,18 @@
 import React from 'react'
-import { View, FlatList, TouchableOpacity, Image } from 'react-native'
-import styled from "styled-components/native";
-import * as api from '../api'
+import { View, FlatList, ActivityIndicator } from 'react-native'
+import styled, { useTheme } from "styled-components/native";
 import Text from '../components/Text'
+import useArticles from '../hooks/useArticles';
 
 export default function Articles({ route, navigation }) {
 
-    const [Articles, setArticles] = React.useState(null)
     const { Query } = route.params
+    const { Articles, loading } = useArticles(Query)
+    const theme = useTheme()
 
-    React.useEffect(() => {
-        const fetchArticles = async () => {
-            const data = await api.searchArticles(Query)
-            setArticles(data.articles)
-            console.log(data.articles)
-        }
-        fetchArticles()
-    }, [])
 
     const renderItem = ({ item }) => {
-        
+    
         return (
             <Item onPress={() => navigation.navigate('details', { article: item })} >
                 <Text bold>{ item.title }</Text>
@@ -33,16 +26,27 @@ export default function Articles({ route, navigation }) {
     return (
         <ArticlessContainer>
             <FirstSection>
-                <HeaderText>
-                    Bienvenido a articles
+                <HeaderText size={18} bold>
+                    Welcome to articles
                 </HeaderText>
             </FirstSection>
             <ArticlesSection>
-             {Articles && <FlatList
-                contentContainerStyle=""
-                data={Articles}
-                renderItem={renderItem}
-              />}
+             { loading ? (
+                 <Block>
+                     <ActivityIndicator size="large" color={theme.pallete.primary} />
+                 </Block>
+             ) : !Articles ? (
+                 <Block>
+                    <Text size={20} bold>No result found</Text>
+                 </Block>
+             ) : (
+                    <FlatList
+                        contentContainerStyle=""
+                        data={Articles}
+                        renderItem={renderItem}
+                    />
+                )
+              }
             </ArticlesSection>
         </ArticlessContainer>
     )
@@ -53,10 +57,10 @@ const ArticlessContainer = styled.SafeAreaView`
     flex: 1;
 `
 
-const HeaderText = styled.Text`
-    font-size: 18px;
-    font-weight: bold;
-    color: ${({ theme }) => theme.text.primary}
+const HeaderText = styled(Text)`
+    padding-vertical: 8px;
+    border-bottom-width: 2px;
+    border-bottom-color: gray;
 `
 
 const FirstSection = styled.View`
@@ -75,9 +79,11 @@ const Item = styled.TouchableOpacity`
     shadow-color: #000;
     shadow-offset: {width: 0, height: 4};
     shadow-opacity: 0.4;
-    shadow-radius: 4;
+    shadow-radius: 4px;
 `
 
-/* const ItemText = styled.Text`
-
-` */
+const Block = styled.View`
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+`

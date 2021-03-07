@@ -34,17 +34,17 @@ export default function CustomButton({ title, size, primary, secondary, ...rest 
 
 const ButtonContainer = styled.TouchableOpacity`
     background-color: ${({ primary, secondary, theme }) => primary ? theme.pallete.primary : secondary ? theme.pallete.secondary : "#D1C4E9"};
-    border-radius: 10;
-    padding-vertical: 10;
-    padding-horizontal: 12;
+    border-radius: 10px;
+    padding-vertical: 10px;
+    padding-horizontal: 12px;
     shadow-color: #000;
     shadow-offset: {width: 0, height: 4};
     shadow-opacity: 0.4;
-    shadow-radius: 7;
+    shadow-radius: 7px;
 `
 
 const ButtonText = styled.Text`
-    font-size: ${({ size }) => size !== 'small' ? 18 : 13 };
+    font-size: ${({ size }) => size !== 'small' ? 18 : 13 }px;
     color: ${({ primary, theme }) => primary ? "#fff" : 'rgba(0,0,0,0.8)'};
     font-weight: bold;
     align-self: center;

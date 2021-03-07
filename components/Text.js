@@ -1,13 +1,24 @@
 import React from 'react'
+import { TouchableOpacity } from 'react-native'
 import styled from 'styled-components/native'
 
-export default function Text({ children, ...props }) {
-    return <StyledText {...props}>
-        { children }
-    </StyledText>
+export function TextTouchable({ children, onPress, ...props }) {
+    return <TouchableOpacity onPress={onPress}>
+        <Text {...props }> 
+            { children } 
+        </Text>
+    </TouchableOpacity>
 }
 
-const StyledText = styled.Text`
-    color: ${({ theme }) => theme.text.primary};
+export default function StyledText({ children, ...props }) {
+    return <Text {...props}>
+        { children }
+    </Text>
+}
+
+const Text = styled.Text`
+    color: ${({ theme, color }) => color ? color : theme.text.primary};
     font-weight: ${({ bold }) => bold ? 'bold' : 'normal' };
+    font-size: ${({ size }) => size && size }px;
 `
+

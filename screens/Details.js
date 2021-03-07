@@ -1,13 +1,19 @@
 import React from 'react'
-import { View, Image, ImageBackground, ScrollView, SafeAreaView } from 'react-native'
+import { View, Image, ImageBackground, ScrollView, SafeAreaView, TouchableOpacity } from 'react-native'
 import styled from "styled-components/native";
 import CustomButton from '../components/CustomButton';
-import Text from '../components/Text';
-import {  } from "expo";
+import StyledText, { TextTouchable } from '../components/Text';
+import * as WebBrowser from "expo-web-browser";
+import { format } from "date-fns";
 
 export default function Details({ route, navigation }) {
 
     const { article } = route.params
+
+    const _handleOpenWebBrower = () => {
+        WebBrowser.openBrowserAsync(article.url)
+    }
+
     return (
             <DetailsContainer>
                 <ScrollView>
@@ -17,16 +23,22 @@ export default function Details({ route, navigation }) {
                         { article.title }
                     </TitleText>
 
-                    <PublishedAt bold>
-                        Published at: { article.publishedAt }
-                    </PublishedAt>
+                    <InfoText bold>
+                        Author: { article.author }
+                    </InfoText>
+                    <InfoText bold>
+                        Source: { article.source.name }
+                    </InfoText>
+                    <InfoText bold>
+                        Published at: {  format(new Date(article.publishedAt) , 'yyyy-MM-dd') }
+                    </InfoText>
 
                     <ContentText>
-                        { article.content }
+                        { article.content }. <SeeMore bold onPress={_handleOpenWebBrower}>See More</SeeMore>
                     </ContentText>
 
                     
-                        <GoBackButton size="small" title="Go back" onPress={() => navigation.goBack()}  />
+                    <GoBackButton size="small" title="Go back" onPress={() => navigation.goBack()}  />
 
                 </ScrollView>
             </DetailsContainer>
@@ -41,18 +53,22 @@ const DetailsContainer = styled.View`
     padding: 15px;
 `
 
-const TitleText = styled(Text)`
+const TitleText = styled(StyledText)`
     font-size: 16px;
     margin-vertical: 10px;
 `
 
-const ContentText = styled(Text)`
+const ContentText = styled(StyledText)`
     margin-vertical: 10px;
 `
 
-const PublishedAt = styled(Text)`
+const InfoText = styled(StyledText)`
     font-size: 10px;
-    margin-vertical: 10px;
+    margin-vertical: 2px;
+`
+
+const SeeMore = styled(TextTouchable)`
+ color: rgb(5, 126, 255);
 `
 
 const GoBackButton = styled(CustomButton)`
